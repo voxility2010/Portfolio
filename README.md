@@ -1,62 +1,8 @@
-# Portfolio
+# portfolio-template
+A basic html/css template for web concentration portfolio 1 students
 
-## Overview
-This lab introduces fundamental cloud computing service models through hands-on implementation. The experiment demonstrates the practical usage of **Infrastructure as a Service (IAAS)**, **Platform as a Service (PAAS)**, and **Software as a Service (SAAS)** using real cloud platforms and tools.
+Download this template and use it to build a simple portfolio website. There are lots of comments in the code to explain what is doing what, plus I have made a google presentation that will walk you through some of the things you need to do. Those slides can be found here:
 
-The lab is divided into three parts:
-- Object Storage using Supabase (IAAS)
-- Serverless Functions using Napkin (PAAS)
-- Application Deployment using GitHub and Vercel (SAAS)
+https://docs.google.com/presentation/d/1ybdws_K_1xUW_wzs9dlSobAagYgSCbpZaJKJ1cLyp6k/edit?usp=sharing
 
----
-
-## Objectives
-- Understand core cloud computing concepts
-- Work with object storage services
-- Deploy serverless functions
-- Host and deploy a static web application
-- Gain practical exposure to real-world cloud platforms
-
----
-
-## Part A: IAAS – Object Storage using Supabase
-- Created a Supabase project using free tier
-- Enabled storage access policies using SQL Editor
-- Created a public storage bucket using Python SDK
-- Uploaded an image to the bucket programmatically
-- Generated a public URL for the uploaded object
-
-This part demonstrates how cloud providers offer scalable infrastructure for storage without managing physical hardware.
-
----
-
-## Part B: PAAS – Function as a Service using Napkin
-- Created a workspace on Napkin platform
-- Developed a serverless Python function
-- Implemented a simple joke generator API
-- Deployed the function directly from the browser
-- Accessed the function using a public URL
-
-This part illustrates how PAAS abstracts infrastructure management and allows developers to deploy individual functions easily.
-
----
-
-## Part C: SAAS – Application Deployment using Vercel
-- Customized a portfolio website using HTML
-- Hosted the source code on a public GitHub repository
-- Deployed the application using Vercel
-- Accessed the deployed website using a public URL
-
-This section demonstrates how complete software applications can be delivered to users as a service.
-
----
-
-## Technologies Used
-- Python
-- Supabase (Object Storage)
-- Napkin (Serverless Functions)
-- GitHub
-- Vercel
-- HTML
-
----
+Using this template requires a basic understanding of HTML and CSS
