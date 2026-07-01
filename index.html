@@ -71,7 +71,17 @@
   .nav-cta:hover{border-color:var(--accent)!important;color:var(--accent)!important;}
 
   /* HERO */
+  .hero-wrap{position:relative;width:100%;overflow:hidden;}
+  .hero-bg{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    z-index:0;opacity:0.5;filter:grayscale(0.25) contrast(1.05);
+  }
+  .hero-bg-overlay{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(13,13,11,0.35) 0%,rgba(13,13,11,0.65) 45%,var(--bg) 96%);
+  }
   .hero{
+    position:relative;z-index:2;
     max-width:1180px;margin:0 auto;padding:170px 40px 90px;
     min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;
   }
@@ -213,24 +223,29 @@
   .proj-row:hover .proj-arrow{background:var(--accent);border-color:var(--accent);color:#0d0d0b;transform:rotate(-40deg);}
 
   /* EDUCATION */
-  .edu-list{display:flex;flex-direction:column;gap:0;}
-  .edu-row{
-    display:grid;grid-template-columns:140px 1fr 100px;gap:24px;
-    padding:26px 0;border-top:1px solid var(--border);align-items:center;
+  .edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .edu-card{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg2);
+    transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s;}
+  .edu-card:hover{transform:translateY(-4px);border-color:var(--border2);}
+  .edu-photo{width:100%;height:150px;object-fit:cover;display:block;background:var(--bg3);}
+  .edu-photo-fallback{
+    width:100%;height:150px;display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-size:44px;font-style:italic;font-weight:500;
+    color:var(--bg);background:linear-gradient(135deg,var(--accent),#7a6535);
   }
-  .edu-list .edu-row:last-child{border-bottom:1px solid var(--border);}
-  .edu-yrs{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);}
-  .edu-main{display:flex;align-items:center;gap:16px;}
-  .edu-logo{width:48px;height:48px;min-width:48px;border-radius:9px;object-fit:contain;
-    background:#f1ebe0;padding:7px;border:1px solid var(--border2);}
-  .edu-school{font-family:'Fraunces',serif;font-size:19px;font-weight:500;margin-bottom:4px;}
-  .edu-detail{font-size:13.5px;color:var(--text2);}
-  .edu-score{font-family:'Fraunces',serif;font-style:italic;color:var(--accent);font-size:19px;text-align:right;}
+  .edu-body{padding:22px 24px 26px;}
+  .edu-yrs{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text3);
+    letter-spacing:0.03em;text-transform:uppercase;margin-bottom:10px;}
+  .edu-school{font-family:'Fraunces',serif;font-size:20px;font-weight:500;margin-bottom:4px;letter-spacing:-.2px;}
+  .edu-detail{font-size:13.5px;color:var(--text2);line-height:1.5;}
+  .edu-score{font-family:'Fraunces',serif;font-style:italic;color:var(--accent);font-size:22px;
+    margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
 
   /* RECOGNITION */
   .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
   .rec-card{background:var(--bg);padding:32px;transition:background .25s;}
   .rec-card:hover{background:var(--bg2);}
+  .rec-icon{font-size:26px;margin-bottom:14px;line-height:1;}
   .rec-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:14px;}
   .rec-title{font-family:'Fraunces',serif;font-size:17px;font-weight:500;line-height:1.3;margin-bottom:8px;}
   .rec-sub{font-size:12.5px;color:var(--text3);}
@@ -278,8 +293,7 @@
     .proj-row{grid-template-columns:1fr;gap:10px;}
     .proj-idx{display:none;}
     .proj-status,.proj-arrow{justify-self:start;text-align:left;}
-    .edu-row{grid-template-columns:1fr;gap:10px;}
-    .edu-score{text-align:left;}
+    .edu-grid{grid-template-columns:1fr;}
     .rec-grid{grid-template-columns:1fr;}
     .section{padding:80px 0;}
     .footer-inner{flex-direction:column;gap:6px;align-items:flex-start;}
@@ -303,6 +317,9 @@
 </nav>
 
 <!-- HERO -->
+<div class="hero-wrap">
+<img class="hero-bg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bangalore%20Panorama.jpg" alt="Bengaluru skyline" loading="eager" onerror="this.style.display='none'">
+<div class="hero-bg-overlay"></div>
 <div class="hero">
   <div class="hero-top">
     <span class="hero-status">Bengaluru, India — Open to ML Roles</span>
@@ -329,6 +346,7 @@
       <div class="hstat"><div class="hstat-num">6<span>+</span></div><div class="hstat-label">ML / AI PROJECTS SHIPPED — SOLO &amp; TEAM</div></div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- ABOUT -->
@@ -481,30 +499,33 @@
 <div class="wrap">
   <div class="section" id="education">
     <div class="sec-head reveal"><span class="sec-num">004</span><h2 class="sec-title">Where I've<br><em>studied.</em></h2></div>
-    <div class="edu-list">
-      <div class="edu-row reveal">
-        <div class="edu-yrs">2023 — 2027</div>
-        <div class="edu-main">
-          <img class="edu-logo" src="https://www.google.com/s2/favicons?sz=128&domain=pes.edu" alt="PES University logo" loading="lazy" onerror="this.style.display='none'">
-          <div><div class="edu-school">PES University</div><div class="edu-detail">B.Tech, Computer Science — AI &amp; ML · Bengaluru, India</div></div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <img class="edu-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pesit%20A-block.jpg" alt="PES University campus" loading="lazy" onerror="this.outerHTML='&lt;div class=&quot;edu-photo-fallback&quot;&gt;P&lt;/div&gt;'">
+        <div class="edu-body">
+          <div class="edu-yrs">2023 — 2027</div>
+          <div class="edu-school">PES University</div>
+          <div class="edu-detail">B.Tech, Computer Science — AI &amp; ML · Bengaluru, India</div>
+          <div class="edu-score">8.41<span class="mono" style="font-size:13px;color:var(--text3);font-style:normal;">/10</span></div>
         </div>
-        <div class="edu-score">8.41<span class="mono" style="font-size:12px;color:var(--text3);font-style:normal;">/10</span></div>
       </div>
-      <div class="edu-row reveal">
-        <div class="edu-yrs">Class XII</div>
-        <div class="edu-main">
-          <img class="edu-logo" src="https://www.google.com/s2/favicons?sz=128&domain=cambridgeschool.edu.in" alt="Cambridge School logo" loading="lazy" onerror="this.style.display='none'">
-          <div><div class="edu-school">Cambridge School</div><div class="edu-detail">Noida, India</div></div>
+      <div class="edu-card reveal">
+        <div class="edu-photo-fallback">C</div>
+        <div class="edu-body">
+          <div class="edu-yrs">Class XII</div>
+          <div class="edu-school">Cambridge School</div>
+          <div class="edu-detail">Noida, India</div>
+          <div class="edu-score">91.2%</div>
         </div>
-        <div class="edu-score">91.2%</div>
       </div>
-      <div class="edu-row reveal">
-        <div class="edu-yrs">Class X</div>
-        <div class="edu-main">
-          <img class="edu-logo" src="https://www.google.com/s2/favicons?sz=128&domain=hilltopschooljamshedpur.org" alt="Hill Top School logo" loading="lazy" onerror="this.style.display='none'">
-          <div><div class="edu-school">Hill Top School</div><div class="edu-detail">Jamshedpur, India</div></div>
+      <div class="edu-card reveal">
+        <div class="edu-photo-fallback">H</div>
+        <div class="edu-body">
+          <div class="edu-yrs">Class X</div>
+          <div class="edu-school">Hill Top School</div>
+          <div class="edu-detail">Jamshedpur, India</div>
+          <div class="edu-score">96.7%</div>
         </div>
-        <div class="edu-score">96.7%</div>
       </div>
     </div>
   </div>
@@ -516,31 +537,37 @@
     <div class="sec-head reveal"><span class="sec-num">005</span><h2 class="sec-title">Milestones &amp;<br><em>recognition.</em></h2></div>
     <div class="rec-grid reveal">
       <div class="rec-card">
+        <div class="rec-icon">🏆</div>
         <div class="rec-mono">Academic</div>
         <div class="rec-title">Distinction — 5 Consecutive Semesters</div>
         <div class="rec-sub">PES University · Sem 1–5</div>
       </div>
       <div class="rec-card">
+        <div class="rec-icon">⚗️</div>
         <div class="rec-mono">Program</div>
         <div class="rec-title">Data Alchemist — Distinction</div>
         <div class="rec-sub">PES University · Semester 1</div>
       </div>
       <div class="rec-card">
+        <div class="rec-icon">🏭</div>
         <div class="rec-mono">Industry</div>
         <div class="rec-title">Production ML Deployment</div>
         <div class="rec-sub">~40% efficiency gain · Zimplistic</div>
       </div>
       <div class="rec-card">
+        <div class="rec-icon">📐</div>
         <div class="rec-mono">Teaching</div>
         <div class="rec-title">Linear Algebra TA</div>
         <div class="rec-sub">PES University · Sem 4</div>
       </div>
       <div class="rec-card">
+        <div class="rec-icon">💯</div>
         <div class="rec-mono">Schooling</div>
         <div class="rec-title">96.7% — Class X</div>
         <div class="rec-sub">Hill Top School, Jamshedpur</div>
       </div>
       <div class="rec-card">
+        <div class="rec-icon">🎓</div>
         <div class="rec-mono">Schooling</div>
         <div class="rec-title">91.2% — Class XII</div>
         <div class="rec-sub">Cambridge School, Noida</div>
