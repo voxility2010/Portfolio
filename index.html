@@ -196,37 +196,29 @@
     border:1px solid var(--border);padding:4px 10px;border-radius:2px;}
   .chip.hl{color:var(--accent);border-color:var(--accent-dim);}
 
-  /* PROJECTS — case study cards */
-  .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
-  .case-card{
-    border:1px solid var(--border);border-radius:8px;background:var(--bg2);
-    padding:30px 32px;cursor:pointer;position:relative;overflow:hidden;
-    transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,background .3s;
+  /* PROJECTS — editorial list, same register as the timeline */
+  .work-list{display:flex;flex-direction:column;}
+  .work-item{
+    padding:38px 4px;border-top:1px solid var(--border);
+    transition:background .3s,padding-left .3s;
   }
-  .case-card:hover{transform:translateY(-4px);border-color:var(--accent-dim);background:var(--bg3);}
-  .case-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
-  .case-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);letter-spacing:0.05em;}
-  .case-status{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:var(--text3);}
-  .case-status.live{color:var(--accent);}
-  .case-name{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.3px;
-    display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;}
-  .case-stat-label{font-size:13.5px;color:var(--text2);line-height:1.55;}
-  .case-stat-label strong{color:var(--accent);font-weight:500;}
-  .case-toggle{width:26px;height:26px;border-radius:50%;border:1px solid var(--border2);flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text2);transition:all .3s;}
-  .case-card:hover .case-toggle{border-color:var(--accent);color:var(--accent);}
-  .case-card.open .case-toggle{background:var(--accent);border-color:var(--accent);color:#0d0d0b;transform:rotate(45deg);}
-  .case-body{max-height:0;opacity:0;overflow:hidden;
-    transition:max-height .45s cubic-bezier(.16,1,.3,1),opacity .35s,margin-top .45s;}
-  .case-card.open .case-body{max-height:280px;opacity:1;margin-top:16px;}
-  .case-desc{font-size:13.5px;color:var(--text2);line-height:1.7;padding-top:16px;border-top:1px solid var(--border);}
-  .case-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
-  .case-tags span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--text2);
-    border:1px solid var(--border2);padding:3px 9px;border-radius:2px;}
-  .case-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--accent);
-    text-decoration:none;letter-spacing:0.02em;}
-  .case-link:hover{text-decoration:underline;}
+  .work-list .work-item:last-child{border-bottom:1px solid var(--border);}
+  .work-item:hover{background:var(--bg2);padding-left:16px;}
+  .work-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;gap:20px;}
+  .work-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);letter-spacing:0.05em;}
+  .work-status{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;
+    text-transform:uppercase;color:var(--text3);white-space:nowrap;}
+  .work-status.live{color:var(--accent);}
+  .work-name{font-family:'Fraunces',serif;font-size:25px;font-weight:500;letter-spacing:-.4px;margin-bottom:12px;}
+  .work-desc{font-size:14.5px;color:var(--text2);line-height:1.75;max-width:660px;font-weight:300;}
+  .work-desc strong{color:var(--text);font-weight:500;}
+  .work-meta{display:flex;justify-content:space-between;align-items:center;margin-top:22px;flex-wrap:wrap;gap:16px;}
+  .work-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .work-tags span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);
+    border:1px solid var(--border2);padding:4px 10px;border-radius:2px;}
+  .work-link{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);
+    text-decoration:none;letter-spacing:0.02em;white-space:nowrap;}
+  .work-link:hover{text-decoration:underline;}
 
   /* EDUCATION */
   .edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -305,7 +297,7 @@
     .wrap{padding:0 24px;}
     .hero-bottom{grid-template-columns:1fr;gap:36px;}
     .about-grid{grid-template-columns:1fr;gap:40px;}
-    .case-grid{grid-template-columns:1fr;}
+    .work-item:hover{padding-left:4px;}
     .proj-featured .proj-name{font-size:24px;}
     .proj-figures{flex-wrap:wrap;gap:16px 28px;}
     .edu-grid{grid-template-columns:1fr;}
@@ -440,69 +432,63 @@
 <div class="wrap">
   <div class="section" id="projects">
     <div class="sec-head reveal"><span class="sec-num">003</span><h2 class="sec-title">Things I've<br><em>built.</em></h2></div>
-    <div class="case-grid">
+    <div class="work-list">
 
-      <div class="case-card reveal">
-        <div class="case-top"><span class="case-num">01</span><span class="case-status live">In Progress</span></div>
-        <div class="case-name">Punjabi LLM — From Scratch<span class="case-toggle">+</span></div>
-        <div class="case-stat-label"><strong>120M-param</strong> transformer trained on raw Punjabi text — not fine-tuned from someone else's weights.</div>
-        <div class="case-body">
-          <div class="case-desc">A LLaMA-style decoder-only Transformer (RoPE, RMSNorm, SwiGLU) trained on Gurmukhi-script Punjabi text in raw PyTorch, with a custom SentencePiece tokenizer.</div>
-          <div class="case-tags"><span>PyTorch</span><span>SentencePiece</span><span>CUDA</span></div>
+      <div class="work-item reveal">
+        <div class="work-top"><span class="work-num">01</span><span class="work-status live">In Progress</span></div>
+        <div class="work-name">Punjabi LLM — From Scratch</div>
+        <p class="work-desc">A LLaMA-style decoder-only Transformer (RoPE, RMSNorm, SwiGLU) trained on Gurmukhi-script Punjabi text in raw PyTorch, with a custom SentencePiece tokenizer — <strong>120M parameters</strong>, trained from raw text rather than fine-tuned from someone else's weights.</p>
+        <div class="work-meta">
+          <div class="work-tags"><span>PyTorch</span><span>SentencePiece</span><span>CUDA</span></div>
         </div>
       </div>
 
-      <div class="case-card reveal">
-        <div class="case-top"><span class="case-num">02</span><span class="case-status">Private Repo</span></div>
-        <div class="case-name">VideoRAG — Video Q&amp;A System<span class="case-toggle">+</span></div>
-        <div class="case-stat-label">RAG pipeline for video Q&amp;A — <strong>~535ms</strong> average query latency.</div>
-        <div class="case-body">
-          <div class="case-desc">RAG pipeline for natural-language Q&amp;A over YouTube video, shipped as a FastAPI + Streamlit app.</div>
-          <div class="case-tags"><span>Whisper</span><span>FAISS</span><span>Groq</span></div>
+      <div class="work-item reveal">
+        <div class="work-top"><span class="work-num">02</span><span class="work-status">Private Repo</span></div>
+        <div class="work-name">VideoRAG — Video Q&amp;A System</div>
+        <p class="work-desc">RAG pipeline (yt-dlp → Whisper → FAISS → Groq) for natural-language Q&amp;A over YouTube video, shipped as a FastAPI + Streamlit app with <strong>~535ms</strong> average query latency.</p>
+        <div class="work-meta">
+          <div class="work-tags"><span>Whisper</span><span>FAISS</span><span>Groq</span></div>
         </div>
       </div>
 
-      <div class="case-card reveal">
-        <div class="case-top"><span class="case-num">03</span><span class="case-status live">View Repo</span></div>
-        <div class="case-name">Issue Desk — Bug Reporting Bot<span class="case-toggle">+</span></div>
-        <div class="case-stat-label">Natural-language bug intake powered by <strong>Llama 3.3 70B</strong>.</div>
-        <div class="case-body">
-          <div class="case-desc">A conversational bug-intake system using a Python state machine and Groq-hosted Llama 3.3 70B, with UUID4 session and ticket management.</div>
-          <div class="case-tags"><span>FastAPI</span><span>SQLite</span><span>Llama 3.3</span></div>
-          <a class="case-link" href="https://github.com/voxility2010/Issue-Reported-Chatbot" target="_blank">View Repo ↗</a>
+      <div class="work-item reveal">
+        <div class="work-top"><span class="work-num">03</span><span class="work-status live">View Repo</span></div>
+        <div class="work-name">Issue Desk — Bug Reporting Bot</div>
+        <p class="work-desc">A conversational bug-intake system using a Python state machine and Groq-hosted <strong>Llama 3.3 70B</strong>, with UUID4 session and ticket management.</p>
+        <div class="work-meta">
+          <div class="work-tags"><span>FastAPI</span><span>SQLite</span><span>Llama 3.3</span></div>
+          <a class="work-link" href="https://github.com/voxility2010/Issue-Reported-Chatbot" target="_blank">View Repo ↗</a>
         </div>
       </div>
 
-      <div class="case-card reveal">
-        <div class="case-top"><span class="case-num">04</span><span class="case-status live">View Repo</span></div>
-        <div class="case-name">XAI Robustness Under Drift<span class="case-toggle">+</span></div>
-        <div class="case-stat-label">SHAP stability dropped to <strong>0.133</strong> under severe drift — accuracy held at 93.8%.</div>
-        <div class="case-body">
-          <div class="case-desc">Evaluated SHAP and LIME stability across 9 engineered drift scenarios on XGBoost.</div>
-          <div class="case-tags"><span>XGBoost</span><span>SHAP</span><span>LIME</span></div>
-          <a class="case-link" href="https://github.com/voxility2010/XAI-stability-under-drift" target="_blank">View Repo ↗</a>
+      <div class="work-item reveal">
+        <div class="work-top"><span class="work-num">04</span><span class="work-status live">View Repo</span></div>
+        <div class="work-name">XAI Robustness Under Drift</div>
+        <p class="work-desc">Evaluated SHAP and LIME stability across 9 engineered drift scenarios on XGBoost. SHAP stability dropped to <strong>0.133</strong> under severe drift while accuracy held near 93.8%.</p>
+        <div class="work-meta">
+          <div class="work-tags"><span>XGBoost</span><span>SHAP</span><span>LIME</span></div>
+          <a class="work-link" href="https://github.com/voxility2010/XAI-stability-under-drift" target="_blank">View Repo ↗</a>
         </div>
       </div>
 
-      <div class="case-card reveal">
-        <div class="case-top"><span class="case-num">05</span><span class="case-status live">Team Project</span></div>
-        <div class="case-name">SupplyChainAgents<span class="case-toggle">+</span></div>
-        <div class="case-stat-label">Built on a <strong>custom message bus</strong> — zero LangChain dependencies.</div>
-        <div class="case-body">
-          <div class="case-desc">Team project — multi-agent demand forecasting and inventory orchestration, built for the LLM Systems course.</div>
-          <div class="case-tags"><span>GPT-4</span><span>WebSockets</span><span>Team</span></div>
-          <a class="case-link" href="https://github.com/ritikaseth1003/SupplyChainAgents" target="_blank">View Repo ↗</a>
+      <div class="work-item reveal">
+        <div class="work-top"><span class="work-num">05</span><span class="work-status live">Team Project</span></div>
+        <div class="work-name">SupplyChainAgents — Multi-Agent System</div>
+        <p class="work-desc">Team project — multi-agent demand forecasting and inventory orchestration with a <strong>custom FastAPI + WebSocket message bus</strong>, no LangChain, built for the LLM Systems course.</p>
+        <div class="work-meta">
+          <div class="work-tags"><span>GPT-4</span><span>WebSockets</span><span>Team</span></div>
+          <a class="work-link" href="https://github.com/ritikaseth1003/SupplyChainAgents" target="_blank">View Repo ↗</a>
         </div>
       </div>
 
-      <div class="case-card reveal">
-        <div class="case-top"><span class="case-num">06</span><span class="case-status live">View Repo</span></div>
-        <div class="case-name">Causal Impact: Digital India<span class="case-toggle">+</span></div>
-        <div class="case-stat-label"><strong>3 causal estimators</strong> isolating real impact from correlation.</div>
-        <div class="case-body">
-          <div class="case-desc">T-Learner, Doubly Robust estimation, and Causal Forests via EconML — measuring effect on literacy, employment and GDP.</div>
-          <div class="case-tags"><span>EconML</span><span>Causal Forest</span></div>
-          <a class="case-link" href="https://github.com/voxility2010/Causal-impact-india-digital" target="_blank">View Repo ↗</a>
+      <div class="work-item reveal">
+        <div class="work-top"><span class="work-num">06</span><span class="work-status live">View Repo</span></div>
+        <div class="work-name">Causal Impact: Digital India</div>
+        <p class="work-desc">Causal ML analysis of Digital India's effect on literacy, employment and GDP — <strong>T-Learner, Doubly Robust estimation, and Causal Forests</strong> via EconML, isolating impact from correlation.</p>
+        <div class="work-meta">
+          <div class="work-tags"><span>EconML</span><span>Causal Forest</span></div>
+          <a class="work-link" href="https://github.com/voxility2010/Causal-impact-india-digital" target="_blank">View Repo ↗</a>
         </div>
       </div>
 
@@ -624,13 +610,6 @@ const io = new IntersectionObserver((entries)=>{
   });
 },{threshold:0.1});
 reveals.forEach(el=>io.observe(el));
-
-document.querySelectorAll('.case-card').forEach(card=>{
-  card.addEventListener('click', (e)=>{
-    if(e.target.closest('.case-link')) return;
-    card.classList.toggle('open');
-  });
-});
 </script>
 </body>
 </html>
